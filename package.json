@@ -1,0 +1,106 @@
+{
+    "name": "@nlib/global",
+    "publishConfig": {
+        "access": "public"
+    },
+    "version": "3.17.2",
+    "license": "Apache-2.0",
+    "author": {
+        "name": "Kei Ito",
+        "email": "kei.itof@gmail.com",
+        "url": "https://github.com/kei-ito"
+    },
+    "homepage": "https://github.com/nlibjs/global",
+    "repository": "https://github.com/nlibjs/global",
+    "engines": {
+        "node": ">=12"
+    },
+    "main": "lib/index.js",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "tsc --project tsconfig.build.json",
+        "test": "ava",
+        "lint": "eslint --ext .ts --ext .js src",
+        "prepack": "rimraf 'lib/**/*.test.*'"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^9.1.2",
+        "@commitlint/config-conventional": "^9.1.2",
+        "@nlib/eslint-config": "^3.17.5",
+        "@nlib/test": "^3.17.4",
+        "@types/eslint": "^7.2.2",
+        "@typescript-eslint/eslint-plugin": "^3.10.1",
+        "@typescript-eslint/parser": "^3.10.1",
+        "ava": "^3.12.1",
+        "eslint": "^7.7.0",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.13",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^3.0.2",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.2"
+    },
+    "ava": {
+        "extensions": [
+            "ts",
+            "js"
+        ],
+        "require": [
+            "ts-node/register"
+        ],
+        "files": [
+            "!**/*.module.ts"
+        ]
+    },
+    "eslintConfig": {
+        "extends": [
+            "@nlib/eslint-config"
+        ],
+        "env": {
+            "node": true
+        },
+        "overrides": [
+            {
+                "files": [
+                    "src/index.ts"
+                ],
+                "rules": {
+                    "no-shadow-restricted-names": "off"
+                }
+            }
+        ]
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.ts": [
+            "eslint"
+        ],
+        "*.js": [
+            "eslint"
+        ]
+    },
+    "renovate": {
+        "extends": [
+            ":ignoreModulesAndTests",
+            ":unpublishSafe",
+            ":semanticPrefixChore",
+            ":prNotPending",
+            ":prConcurrentLimit10",
+            ":prHourlyLimitNone",
+            ":label(dependencies)",
+            ":automergeMinor"
+        ]
+    }
+}
