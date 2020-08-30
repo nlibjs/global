@@ -75,6 +75,15 @@
             },
             {
                 "files": [
+                    "src/getType.ts"
+                ],
+                "rules": {
+                    "@typescript-eslint/no-explicit-any": "off",
+                    "@typescript-eslint/unbound-method": "off"
+                }
+            },
+            {
+                "files": [
                     "src/AppError.ts"
                 ],
                 "rules": {

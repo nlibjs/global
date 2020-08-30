@@ -3,6 +3,7 @@ export * from './concur';
 export * from './defineHiddenReadOnlyProperty';
 export * from './defineReadOnlyProperties';
 export * from './Error';
+export * from './getType';
 export * from './global';
 export * from './iteratorOf';
 export * from './sort';
