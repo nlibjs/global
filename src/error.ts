@@ -1,5 +1,5 @@
 import {globalThis} from './global';
-import {defineReadOnlyProperties} from './object';
+import {defineReadOnlyProperties} from './defineReadOnlyProperties';
 
 export class Error<T> extends globalThis.Error {
 

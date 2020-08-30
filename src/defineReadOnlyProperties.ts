@@ -1,9 +1,5 @@
 import {Object} from './global';
-export const defineHiddenReadOnlyProperty = <T, V>(
-    object: T,
-    key: symbol,
-    value: V,
-): T => Object.defineProperty(object, key, {value}) as T;
+
 export const defineReadOnlyProperties = <T, V extends Record<string, any>>(
     object: T,
     valueMap: V,

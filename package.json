@@ -69,7 +69,7 @@
             },
             {
                 "files": [
-                    "src/object.ts"
+                    "src/defineReadOnlyProperties.ts"
                 ],
                 "rules": {
                     "@typescript-eslint/no-explicit-any": "off",
