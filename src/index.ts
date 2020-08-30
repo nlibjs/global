@@ -91,3 +91,5 @@ export const {clearTimeout} = g;
 export const {console} = g;
 export const {setInterval} = g;
 export const {setTimeout} = g;
+const _null = null;
+export {_null as null};
