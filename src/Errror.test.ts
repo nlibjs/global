@@ -1,5 +1,5 @@
 import ava from 'ava';
-import {Error} from './AppError';
+import {Error} from './Error';
 import {Object} from './global';
 
 ava('create an Error without code', (t) => {
