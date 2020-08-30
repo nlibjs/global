@@ -66,7 +66,8 @@
                     "src/index.ts"
                 ],
                 "rules": {
-                    "no-shadow-restricted-names": "off"
+                    "no-shadow-restricted-names": "off",
+                    "@typescript-eslint/unbound-method": "off"
                 }
             }
         ]
