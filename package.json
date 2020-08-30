@@ -57,9 +57,6 @@
         "extends": [
             "@nlib/eslint-config"
         ],
-        "env": {
-            "node": true
-        },
         "overrides": [
             {
                 "files": [
