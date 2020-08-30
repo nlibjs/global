@@ -75,6 +75,14 @@
             },
             {
                 "files": [
+                    "src/AppError.ts"
+                ],
+                "rules": {
+                    "@typescript-eslint/no-explicit-any": "off"
+                }
+            },
+            {
+                "files": [
                     "src/defineReadOnlyProperties.ts"
                 ],
                 "rules": {

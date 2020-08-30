@@ -3,7 +3,7 @@ import {Promise} from './global';
 import {concur} from './concur';
 import {wait} from './wait';
 import {iteratorOf} from './iteratorOf';
-import {Error} from './error';
+import {AppError} from './AppError';
 
 ava('process concurrently', async (t) => {
     const iterator = iteratorOf([5, 4, 3, 2, 1, 0]);
@@ -45,7 +45,7 @@ ava('stop at an error', async (t) => {
     const processor = async (item: number, index: number) => {
         events.push(`start ${item} ${index}`);
         if (index === 4) {
-            throw new Error('ExpectedError', '');
+            throw new AppError({code: 'ExpectedError'});
         }
         await wait((3 ** item) * 10);
         events.push(`end ${item} ${index}`);

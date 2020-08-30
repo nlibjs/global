@@ -1,5 +1,5 @@
 import {Promise} from './global';
-import {Error} from './error';
+import {AppError} from './AppError';
 
 export const concur = async <T, S>(
     params: {
@@ -46,6 +46,6 @@ export const concur = async <T, S>(
         };
         next();
     } else {
-        reject(new Error('InvalidConcurrency', `The concurrency is invalid: ${concurrency}`, params));
+        reject(new AppError({code: 'InvalidConcurrency', data: params}));
     }
 });

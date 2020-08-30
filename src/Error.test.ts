@@ -1,5 +1,5 @@
 import ava from 'ava';
-import {Error} from './error';
+import {Error} from './AppError';
 import {Object} from './global';
 
 ava('create an Error without code', (t) => {
@@ -9,21 +9,12 @@ ava('create an Error without code', (t) => {
 });
 
 ava('create an Error with code', (t) => {
-    const error = new Error('Expected', 'foo');
+    const error = new Error('foo', 'Expected');
     t.is(error.message, 'foo');
     t.is(error.code, 'Expected');
-    t.is(error.data, null);
-});
-
-ava('create an Error with code and data', (t) => {
-    const error = new Error('Expected', 'foo', 123);
-    t.is(error.message, 'foo');
-    t.is(error.code, 'Expected');
-    t.is(error.data, 123);
 });
 
 ava('code and data are fixed', (t) => {
-    const error = new Error('Expected', 'foo', 123);
+    const error = new Error('foo', 'Expected');
     t.throws(() => Object.assign(error, {code: 'Expected2'}));
-    t.throws(() => Object.assign(error, {data: 234}));
 });
