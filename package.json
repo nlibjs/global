@@ -60,11 +60,20 @@
         "overrides": [
             {
                 "files": [
-                    "src/index.ts"
+                    "src/global.ts"
                 ],
                 "rules": {
                     "no-shadow-restricted-names": "off",
                     "@typescript-eslint/unbound-method": "off"
+                }
+            },
+            {
+                "files": [
+                    "src/object.ts"
+                ],
+                "rules": {
+                    "@typescript-eslint/no-explicit-any": "off",
+                    "@typescript-eslint/no-unsafe-assignment": "off"
                 }
             }
         ]
