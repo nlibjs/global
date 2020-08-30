@@ -20,7 +20,7 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc --project tsconfig.build.json",
+        "build": "tsc",
         "test": "ava",
         "lint": "eslint --ext .ts --ext .js src",
         "prepack": "rimraf 'lib/**/*.test.*'"
