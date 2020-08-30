@@ -10,10 +10,11 @@ ava('create an AppError', (t) => {
 });
 
 ava('create an AppError with data', (t) => {
-    const error = new AppError({code: 'Foo', data: 123});
+    const error = new AppError({code: 'Foo', message: 'bar', data: 123});
     t.is(error.code, 'Foo');
-    t.is(error.message, 'Foo');
+    t.is(error.message, 'bar');
     t.is(error.data, 123);
+    t.is(error.toString(), 'Foo: bar');
 });
 
 ava('code and data are fixed', (t) => {
