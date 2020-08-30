@@ -39,7 +39,7 @@ ava('process concurrently', async (t) => {
     ]);
 });
 
-ava('stop at an error', async (t) => {
+ava('stop at an error in the processor', async (t) => {
     const iterator = iteratorOf([5, 4, 3, 2, 1, 0]);
     const events: Array<string> = [];
     const processor = async (item: number, index: number) => {
@@ -62,6 +62,31 @@ ava('stop at an error', async (t) => {
         'start 2 3',
         'end 2 3',
         'start 1 4',
+    ]);
+});
+
+ava('stop at an error in the iterator', async (t) => {
+    const iterator = (function* () {
+        for (let index = 6; --index;) {
+            if (index < 4) {
+                throw new AppError({code: 'ExpectedError'});
+            }
+            yield index;
+        }
+    }());
+    const events: Array<string> = [];
+    const processor = async (item: number, index: number) => {
+        events.push(`start ${item} ${index}`);
+        await wait((3 ** item) * 10);
+        events.push(`end ${item} ${index}`);
+        return {item, index};
+    };
+    await t.throwsAsync(async () => {
+        await concur({concurrency: 3, iterator, processor});
+    }, {code: 'ExpectedError'});
+    t.deepEqual(events, [
+        'start 5 0',
+        'start 4 1',
     ]);
 });
 
