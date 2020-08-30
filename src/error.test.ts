@@ -1,5 +1,6 @@
 import ava from 'ava';
 import {Error} from './error';
+import {Object} from './global';
 
 ava('create an Error without code', (t) => {
     const error = new Error('foo');
