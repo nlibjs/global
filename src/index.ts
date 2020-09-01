@@ -6,5 +6,6 @@ export * from './Error';
 export * from './getType';
 export * from './global';
 export * from './iteratorOf';
+export * from './serialize';
 export * from './sort';
 export * from './wait';
