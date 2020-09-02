@@ -32,8 +32,8 @@
     "devDependencies": {
         "@commitlint/cli": "^9.1.2",
         "@commitlint/config-conventional": "^9.1.2",
-        "@nlib/eslint-config": "^3.17.7",
-        "@nlib/eslint-plugin": "^1.0.4",
+        "@nlib/eslint-config": "^3.17.8",
+        "@nlib/eslint-plugin": "^1.0.6",
         "@types/eslint": "^7.2.2",
         "@typescript-eslint/eslint-plugin": "^4.0.1",
         "@typescript-eslint/parser": "^4.0.1",
@@ -58,7 +58,10 @@
     },
     "eslintConfig": {
         "extends": [
-            "@nlib/eslint-config"
+            "@nlib"
+        ],
+        "plugins": [
+            "@nlib"
         ],
         "rules": {
             "@nlib/print-filename": "error",
