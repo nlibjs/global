@@ -33,7 +33,7 @@
         "@commitlint/cli": "^9.1.2",
         "@commitlint/config-conventional": "^9.1.2",
         "@nlib/eslint-config": "^3.17.8",
-        "@nlib/eslint-plugin": "^1.0.6",
+        "@nlib/eslint-plugin": "^1.0.7",
         "@types/eslint": "^7.2.2",
         "@typescript-eslint/eslint-plugin": "^4.0.1",
         "@typescript-eslint/parser": "^4.0.1",
@@ -65,7 +65,7 @@
         ],
         "rules": {
             "@nlib/print-filename": "error",
-            "@nlib/restrict-globals": "error"
+            "@nlib/no-globals": "error"
         },
         "overrides": [
             {
@@ -74,7 +74,7 @@
                 ],
                 "rules": {
                     "no-shadow-restricted-names": "off",
-                    "@nlib/restrict-globals": [
+                    "@nlib/no-globals": [
                         "error",
                         {
                             "allowed": [
@@ -125,7 +125,7 @@
                     "src/serialize.test.ts"
                 ],
                 "rules": {
-                    "@nlib/restrict-globals": [
+                    "@nlib/no-globals": [
                         "error",
                         {
                             "allowed": [
