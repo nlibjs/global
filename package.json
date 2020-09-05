@@ -49,7 +49,7 @@
         "husky": "^4.2.5",
         "lint-staged": "^10.3.0",
         "npm-run-all": "^4.1.5",
-        "ts-node": "^9.0.0",
+        "sucrase": "^3.15.0",
         "typescript": "^4.0.2"
     },
     "ava": {
@@ -57,7 +57,7 @@
             "ts"
         ],
         "require": [
-            "ts-node/register"
+            "sucrase/register/ts"
         ],
         "files": [
             "!**/*.module.ts"
