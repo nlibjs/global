@@ -15,33 +15,41 @@
     "engines": {
         "node": ">=12"
     },
-    "main": "./lib/index.js",
+    "type": "module",
+    "main": "./esm/index.js",
     "exports": {
-        ".": "./lib/index.js"
+        "import": "./esm/index.js",
+        "require": "./cjs/index.cjs"
     },
     "files": [
-        "lib",
-        "src",
+        "esm",
+        "cjs",
         "!*.test.*"
     ],
     "scripts": {
-        "build": "tsc",
+        "build": "run-s build:*",
+        "build:indexen": "indexen --input src --output src/index.ts",
+        "build:esm": "tsc",
+        "build:cjs": "run-s build:cjs:*",
+        "build:cjs:tsc": "tsc --project tsconfig.cjs.json",
+        "build:cjs:rename": "replace-ext --directory cjs --entry js/cjs",
         "test": "ava",
         "lint": "eslint --ext .ts src"
     },
     "devDependencies": {
         "@commitlint/cli": "^9.1.2",
         "@commitlint/config-conventional": "^9.1.2",
-        "@nlib/eslint-config": "^3.17.9",
+        "@nlib/eslint-config": "^3.17.11",
+        "@nlib/nodetool": "0.0.4",
         "@types/eslint": "^7.2.2",
         "@typescript-eslint/eslint-plugin": "^4.0.1",
         "@typescript-eslint/parser": "^4.0.1",
         "ava": "^3.12.1",
         "eslint": "^7.8.1",
         "husky": "^4.2.5",
-        "lint-staged": "^10.2.13",
+        "lint-staged": "^10.3.0",
         "npm-run-all": "^4.1.5",
-        "ts-node": "^9.0.0",
+        "sucrase": "^3.15.0",
         "typescript": "^4.0.2"
     },
     "ava": {
@@ -49,7 +57,7 @@
             "ts"
         ],
         "require": [
-            "ts-node/register"
+            "sucrase/register/ts"
         ],
         "files": [
             "!**/*.module.ts"
@@ -131,7 +139,7 @@
     },
     "commitlint": {
         "extends": [
-            "@commitlint/config-conventional"
+            "@nlib/eslint-config/commitlint.config.js"
         ]
     },
     "husky": {
@@ -150,14 +158,7 @@
     },
     "renovate": {
         "extends": [
-            ":ignoreModulesAndTests",
-            ":unpublishSafe",
-            ":semanticPrefixChore",
-            ":prNotPending",
-            ":prConcurrentLimit10",
-            ":prHourlyLimitNone",
-            ":label(dependencies)",
-            ":automergeMinor"
+            "github>nlibjs/renovate-config"
         ]
     }
 }
