@@ -15,27 +15,32 @@
     "engines": {
         "node": ">=12"
     },
-    "main": "./lib/index.js",
+    "type": "module",
+    "main": "./esm/index.js",
     "exports": {
-        ".": "./lib/index.js"
+        "import": "./esm/index.js",
+        "require": "./cjs/index.cjs"
     },
     "files": [
-        "lib",
-        "src",
+        "esm",
+        "cjs",
         "!*.test.*"
     ],
     "scripts": {
         "build": "run-s build:*",
         "build:indexen": "indexen --input src --output src/index.ts",
-        "build:tsc": "tsc",
+        "build:esm": "tsc",
+        "build:cjs": "run-s build:cjs:*",
+        "build:cjs:tsc": "tsc --project tsconfig.cjs.json",
+        "build:cjs:rename": "replace-ext --directory cjs --entry js/cjs",
         "test": "ava",
         "lint": "eslint --ext .ts src"
     },
     "devDependencies": {
         "@commitlint/cli": "^9.1.2",
         "@commitlint/config-conventional": "^9.1.2",
-        "@nlib/eslint-config": "^3.17.10",
-        "@nlib/nodetool": "0.0.2",
+        "@nlib/eslint-config": "^3.17.11",
+        "@nlib/nodetool": "0.0.4",
         "@types/eslint": "^7.2.2",
         "@typescript-eslint/eslint-plugin": "^4.0.1",
         "@typescript-eslint/parser": "^4.0.1",
