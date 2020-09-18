@@ -1,10 +1,22 @@
 # Changelog
 
-## v0.1.4 (2020-09-07)
+## v0.1.7 (2020-09-18)
+
+### Bug Fixes
+
+- add local definitions for URL ans URLSearchParams (0de6348)
+
+### Documentation
+
+- add a prefix (57c0c6c)
 
 ### Continuous Integration
 
 - add test-skipbuild (3998532)
+
+### Dependency Upgrades
+
+- upgrade dependencies (b93516e)
 
 
 ## v3.17.15 (2020-09-06)
