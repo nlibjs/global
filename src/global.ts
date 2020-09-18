@@ -75,10 +75,25 @@ export const {Intl} = g;
 export const {WebAssembly} = g;
 
 export const {Promise} = g;
-export const {URL} = g;
-export const {URLSearchParams} = g;
 export const {clearInterval} = g;
 export const {clearTimeout} = g;
 export const {console} = g;
 export const {setInterval} = g;
 export const {setTimeout} = g;
+
+interface whatwgURL extends URL {
+    new (
+        url: string | URL,
+        base?: string | URL,
+    ): URL,
+}
+const _URL = (g as unknown as {URL: unknown}).URL as whatwgURL;
+export {_URL as URL};
+
+interface whatwgURLSearchParams extends URLSearchParams {
+    new (
+        init: string | URLSearchParams | Iterable<[string, string]> | Record<string, string>,
+    ): URLSearchParams,
+}
+const _URLSearchParams = (g as unknown as {URLSearchParams: unknown}).URLSearchParams as whatwgURLSearchParams;
+export {_URLSearchParams as URLSearchParams};
