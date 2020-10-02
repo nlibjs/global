@@ -1,6 +1,17 @@
 # Changelog
 
-## v0.1.7 (2020-09-18)
+## v0.1.7 (2020-10-02)
+
+### Features
+
+- add TextEncoder and TextDecoder (726e70d)
+
+### Dependency Upgrades
+
+- upgrade dependencies (9b87a2b)
+
+
+## v3.17.16 (2020-09-18)
 
 ### Bug Fixes
 
