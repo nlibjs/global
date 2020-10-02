@@ -97,3 +97,6 @@ interface whatwgURLSearchParams extends URLSearchParams {
 }
 const _URLSearchParams = (g as unknown as {URLSearchParams: unknown}).URLSearchParams as whatwgURLSearchParams;
 export {_URLSearchParams as URLSearchParams};
+
+export const {TextDecoder} = g;
+export const {TextEncoder} = g;
