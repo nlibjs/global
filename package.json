@@ -54,15 +54,15 @@
         "@nlib/changelog": "^0.1.7",
         "@nlib/eslint-config": "^3.17.12",
         "@nlib/nodetool": "^0.1.10",
-        "@types/eslint": "^7.2.2",
-        "@typescript-eslint/eslint-plugin": "^4.1.1",
-        "@typescript-eslint/parser": "^4.1.1",
-        "ava": "^3.12.1",
-        "eslint": "^7.9.0",
+        "@types/eslint": "^7.2.3",
+        "@typescript-eslint/eslint-plugin": "^4.3.0",
+        "@typescript-eslint/parser": "^4.3.0",
+        "ava": "^3.13.0",
+        "eslint": "^7.10.0",
         "husky": "^4.3.0",
         "lint-staged": "^10.4.0",
         "npm-run-all": "^4.1.5",
-        "typescript": "^4.0.2"
+        "typescript": "^4.0.3"
     },
     "eslintConfig": {
         "extends": [
