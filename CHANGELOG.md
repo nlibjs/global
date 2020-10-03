@@ -2,6 +2,14 @@
 
 ## v0.1.7 (2020-10-03)
 
+### Code Refactoring
+
+- skip low surrogates (f1a4631)
+- add findCharCodeIndex and findCodePointIndex (72053a1)
+
+
+## v3.17.18 (2020-10-03)
+
 ### Features
 
 - add readLine (169c6b9)
