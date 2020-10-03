@@ -1,23 +1,11 @@
-import {Object} from './global';
+import {findCharCodeIndex} from './findIndex';
+import {Object, Set} from './global';
 
-export const LF = 0x0A;
-export const CR = 0x0D;
+const LF = 0x0A;
+const CR = 0x0D;
+const CRLF = new Set([CR, LF]);
 
-export const findCodePointIndex = (
-    source: string,
-    fromIndex: number,
-    ...codePoints: Array<number>
-): number => {
-    const {length} = source;
-    for (let index = fromIndex; index < length; index++) {
-        if (codePoints.includes(source.charCodeAt(index))) {
-            return index;
-        }
-    }
-    return -1;
-};
-
-export const isCRLF = (
+const isCRLF = (
     source: string,
     index: number,
 ) => source.charCodeAt(index) === CR && source.charCodeAt(index + 1) === LF;
@@ -44,7 +32,7 @@ export const createLineFragmentReader = (): LineFragmentReader => {
             let lineStart = 0;
             const {length} = string;
             while (lineStart < length) {
-                const lineEnd = findCodePointIndex(string, lineStart, CR, LF);
+                const lineEnd = findCharCodeIndex(string, CRLF, lineStart);
                 if (lineEnd < 0) {
                     break;
                 }
