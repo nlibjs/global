@@ -14,6 +14,62 @@ ava('read lines', (t) => {
     t.deepEqual(reader.next(), {value: undefined, done: true});
 });
 
+ava('read lines from a string generator', (t) => {
+    const reader = readLine(function* (): Generator<string> {
+        yield '';
+        yield '\n';
+        yield '012';
+        yield '';
+        yield '\r';
+        yield '\n';
+        yield '34';
+        yield '5';
+        yield '';
+        yield '\r';
+        yield '678';
+        yield '\n\r';
+        yield '';
+        yield '';
+        yield '\n9';
+        yield '';
+    }());
+    t.deepEqual(reader.next(), {value: '', done: false});
+    t.deepEqual(reader.next(), {value: '012', done: false});
+    t.deepEqual(reader.next(), {value: '345', done: false});
+    t.deepEqual(reader.next(), {value: '678', done: false});
+    t.deepEqual(reader.next(), {value: '', done: false});
+    t.deepEqual(reader.next(), {value: '9', done: false});
+    t.deepEqual(reader.next(), {value: undefined, done: true});
+});
+
+ava('read lines from an array of strings', (t) => {
+    const reader = readLine([
+        '',
+        '\n',
+        '012',
+        '',
+        '\r',
+        '\n',
+        '34',
+        '5',
+        '',
+        '\r',
+        '678',
+        '\n\r',
+        '',
+        '',
+        '\n9',
+        '',
+    ]);
+    t.deepEqual(reader.next(), {value: '', done: false});
+    t.deepEqual(reader.next(), {value: '012', done: false});
+    t.deepEqual(reader.next(), {value: '345', done: false});
+    t.deepEqual(reader.next(), {value: '678', done: false});
+    t.deepEqual(reader.next(), {value: '', done: false});
+    t.deepEqual(reader.next(), {value: '9', done: false});
+    t.deepEqual(reader.next(), {value: undefined, done: true});
+});
+
 ava('for-of', (t) => {
     const result: Array<string> = [];
     const reader = readLine('\n012\r\n345\r678\n\r\n9');

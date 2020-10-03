@@ -22,19 +22,22 @@ export const isCRLF = (
     index: number,
 ) => source.charCodeAt(index) === CR && source.charCodeAt(index + 1) === LF;
 
-export interface LineFragmentReader<T> {
+export interface LineFragmentReader {
     readonly flush: () => Generator<string, void, void>,
-    (chunk: T): Generator<string, void, void>,
+    (chunk: string): Generator<string, void, void>,
 }
 
-export const createLineFragmentReader = <T>(): LineFragmentReader<T> => {
+export const createLineFragmentReader = (): LineFragmentReader => {
     let remainder = '';
     let maybeCRLF = false;
     return Object.defineProperty(
         function* (
-            fragment: T,
+            chunk: string,
         ): Generator<string, void, void> {
-            let string = `${remainder}${fragment}`;
+            if (!chunk) {
+                return;
+            }
+            let string = `${remainder}${chunk}`;
             if (maybeCRLF && string.charCodeAt(0) === LF) {
                 string = string.slice(1);
             }
@@ -59,7 +62,7 @@ export const createLineFragmentReader = <T>(): LineFragmentReader<T> => {
                 }
             },
         },
-    ) as LineFragmentReader<T>;
+    ) as LineFragmentReader;
 };
 
 export const readLine = function* <T>(
@@ -67,7 +70,7 @@ export const readLine = function* <T>(
 ): Generator<string, void, void> {
     const read = createLineFragmentReader();
     for (const chunk of typeof source === 'string' ? [source] : source) {
-        yield* read(chunk);
+        yield* read(`${chunk}`);
     }
     yield* read.flush();
 };
@@ -77,7 +80,7 @@ export const readLineAsync = async function* <T>(
 ): AsyncGenerator<string, void, void> {
     const read = createLineFragmentReader();
     for await (const chunk of source) {
-        yield* read(chunk);
+        yield* read(`${chunk}`);
     }
     yield* read.flush();
 };
