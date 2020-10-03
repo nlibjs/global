@@ -1,6 +1,22 @@
 # Changelog
 
-## v0.1.7 (2020-10-02)
+## v0.1.7 (2020-10-03)
+
+### Features
+
+- add readLine (169c6b9)
+
+### Tests
+
+- readLine from string iterables (b6e9927)
+- setup ts testing (0845891)
+
+### Code Refactoring
+
+- add createLineFragmentReader (fdf1af1)
+
+
+## v3.17.17 (2020-10-02)
 
 ### Features
 
