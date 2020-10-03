@@ -1,11 +1,10 @@
-import {findCharCodeIndex} from './findIndex';
-import {Object, Set} from './global';
+import {CodeTester, findIndexOfCharCode} from './findIndex';
+import {Object} from './global';
 
 const LF = 0x0A;
 const CR = 0x0D;
-const CRLF = new Set([CR, LF]);
-
-const isCRLF = (
+const isCROrLF: CodeTester = (c) => c === LF || c === CR;
+const isCRLFSequence = (
     source: string,
     index: number,
 ) => source.charCodeAt(index) === CR && source.charCodeAt(index + 1) === LF;
@@ -32,12 +31,12 @@ export const createLineFragmentReader = (): LineFragmentReader => {
             let lineStart = 0;
             const {length} = string;
             while (lineStart < length) {
-                const lineEnd = findCharCodeIndex(string, CRLF, lineStart);
+                const lineEnd = findIndexOfCharCode(string, isCROrLF, lineStart);
                 if (lineEnd < 0) {
                     break;
                 }
                 yield string.slice(lineStart, lineEnd);
-                lineStart = lineEnd + (isCRLF(string, lineEnd) ? 2 : 1);
+                lineStart = lineEnd + (isCRLFSequence(string, lineEnd) ? 2 : 1);
             }
             remainder = string.slice(lineStart);
             maybeCRLF = string.charCodeAt(length - 1) === CR;

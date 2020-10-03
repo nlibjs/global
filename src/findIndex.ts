@@ -1,11 +1,15 @@
-export const findCharCodeIndex = (
+export interface CodeTester {
+    (testee: number | undefined): boolean,
+}
+
+export const findIndexOfCharCode = (
     source: string,
-    charCodes: Set<number | undefined>,
+    test: CodeTester,
     index = 0,
 ): number => {
     const {length} = source;
     while (index < length) {
-        if (charCodes.has(source.charCodeAt(index))) {
+        if (test(source.charCodeAt(index))) {
             return index;
         }
         index++;
@@ -13,15 +17,15 @@ export const findCharCodeIndex = (
     return -1;
 };
 
-export const findCodePointIndex = (
+export const findIndexOfCodePoint = (
     source: string,
-    codePoints: Set<number | undefined>,
+    test: CodeTester,
     index = 0,
 ): number => {
     const {length} = source;
     while (index < length) {
         const codePoint = source.codePointAt(index);
-        if (codePoints.has(codePoint)) {
+        if (test(codePoint)) {
             return index;
         }
         index += 0x10000 < (codePoint as number) ? 2 : 1;

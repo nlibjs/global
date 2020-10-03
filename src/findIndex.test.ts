@@ -1,19 +1,18 @@
 import ava from 'ava';
-import {findCharCodeIndex, findCodePointIndex} from './findIndex';
-import {Set} from './global';
+import {CodeTester, findIndexOfCharCode, findIndexOfCodePoint} from './findIndex';
 
-ava('findCharCodeIndex', (t) => {
-    const target = new Set(['c'.charCodeAt(0)]);
-    t.is(findCharCodeIndex('abcabc', target), 2);
-    t.is(findCharCodeIndex('abcabc', target, 2), 2);
-    t.is(findCharCodeIndex('abcabc', target, 3), 5);
-    t.is(findCharCodeIndex('abcabc', new Set()), -1);
+ava('findIndexOfCharCode', (t) => {
+    const test: CodeTester = (charCode) => charCode === 'c'.charCodeAt(0);
+    t.is(findIndexOfCharCode('abcabc', test), 2);
+    t.is(findIndexOfCharCode('abcabc', test, 2), 2);
+    t.is(findIndexOfCharCode('abcabc', test, 3), 5);
+    t.is(findIndexOfCharCode('abcabc', () => false), -1);
 });
 
-ava('findCodePointIndex', (t) => {
-    const target = new Set(['😊'.codePointAt(0)]);
-    t.is(findCodePointIndex('abc😊abc😊', target), 3);
-    t.is(findCodePointIndex('abc😊abc😊', target, 3), 3);
-    t.is(findCodePointIndex('abc😊abc😊', target, 4), 8);
-    t.is(findCodePointIndex('abc😊', new Set()), -1);
+ava('findIndexOfCodePoint', (t) => {
+    const test: CodeTester = (codePoint) => codePoint === '😊'.codePointAt(0);
+    t.is(findIndexOfCodePoint('abc😊abc😊', test), 3);
+    t.is(findIndexOfCodePoint('abc😊abc😊', test, 3), 3);
+    t.is(findIndexOfCodePoint('abc😊abc😊', test, 4), 8);
+    t.is(findIndexOfCodePoint('abc😊', () => false), -1);
 });
