@@ -2,6 +2,13 @@
 
 ## v0.1.7 (2020-10-03)
 
+### Breaking Changes
+
+- change findIndexXXX interfaces (9d31076)
+
+
+## v3.17.19 (2020-10-03)
+
 ### Code Refactoring
 
 - skip low surrogates (f1a4631)
