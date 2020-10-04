@@ -49,8 +49,8 @@
         "version:add": "git add ."
     },
     "devDependencies": {
-        "@nlib/changelog": "^0.1.7",
-        "@nlib/eslint-config": "^3.17.12",
+        "@nlib/changelog": "^0.1.8",
+        "@nlib/eslint-config": "^3.17.14",
         "@nlib/lint-commit": "^0.1.3",
         "@nlib/nodetool": "^0.1.10",
         "@types/eslint": "^7.2.3",
