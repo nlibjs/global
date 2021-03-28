@@ -1,15 +1,8 @@
 export type Serializable =
-| string
-| Iterable<string>
-| Iterator<string>
-| ArrayLike<string>;
-
-export interface Serializer {
-    (...args: Array<any>): Serializable,
-}
+ArrayLike<string> | Iterable<string> | Iterator<string> | string;
 
 const isIterator = (
-    input: Iterator<string> | Iterable<string>,
+    input: Iterable<string> | Iterator<string>,
 ): input is Iterator<string> => 'next' in input && typeof input.next === 'function';
 
 export const serialize = function* (
@@ -23,7 +16,7 @@ export const serialize = function* (
             yield serializable[index];
         }
     } else if (isIterator(serializable)) {
-        while (1) {
+        while (true) {
             const result = serializable.next();
             if (result.done) {
                 break;

@@ -50,16 +50,16 @@
     },
     "devDependencies": {
         "@nlib/changelog": "0.1.9",
-        "@nlib/eslint-config": "3.17.16",
-        "@nlib/lint-commit": "0.1.3",
-        "@nlib/nodetool": "0.1.11",
+        "@nlib/eslint-config": "3.17.21",
+        "@nlib/githooks": "0.0.5",
+        "@nlib/lint-commit": "0.1.4",
+        "@nlib/nodetool": "0.1.17",
         "@types/eslint": "7.2.7",
-        "@types/node": "14.14.35",
+        "@types/node": "14.14.37",
         "@typescript-eslint/eslint-plugin": "4.19.0",
         "@typescript-eslint/parser": "4.19.0",
         "ava": "3.15.0",
-        "eslint": "7.22.0",
-        "husky": "4.3.8",
+        "eslint": "7.23.0",
         "lint-staged": "10.5.4",
         "npm-run-all": "4.1.5",
         "sucrase": "3.17.1",
@@ -68,82 +68,7 @@
     "eslintConfig": {
         "extends": [
             "@nlib"
-        ],
-        "overrides": [
-            {
-                "files": [
-                    "src/global.ts"
-                ],
-                "rules": {
-                    "no-shadow-restricted-names": "off",
-                    "@nlib/no-globals": [
-                        "error",
-                        {
-                            "allowed": [
-                                "globalThis"
-                            ]
-                        }
-                    ],
-                    "@typescript-eslint/unbound-method": "off"
-                }
-            },
-            {
-                "files": [
-                    "src/getType.ts"
-                ],
-                "rules": {
-                    "@typescript-eslint/no-explicit-any": "off",
-                    "@typescript-eslint/unbound-method": "off"
-                }
-            },
-            {
-                "files": [
-                    "src/AppError.ts"
-                ],
-                "rules": {
-                    "@typescript-eslint/no-explicit-any": "off"
-                }
-            },
-            {
-                "files": [
-                    "src/defineReadOnlyProperties.ts"
-                ],
-                "rules": {
-                    "@typescript-eslint/no-explicit-any": "off",
-                    "@typescript-eslint/no-unsafe-assignment": "off"
-                }
-            },
-            {
-                "files": [
-                    "src/serialize.ts"
-                ],
-                "rules": {
-                    "@typescript-eslint/no-explicit-any": "off",
-                    "@typescript-eslint/no-unnecessary-condition": "off"
-                }
-            },
-            {
-                "files": [
-                    "src/serialize.test.ts"
-                ],
-                "rules": {
-                    "@nlib/no-globals": [
-                        "error",
-                        {
-                            "allowed": [
-                                "Symbol"
-                            ]
-                        }
-                    ]
-                }
-            }
         ]
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "nlib-lint-commit --input HUSKY_GIT_PARAMS",
-            "pre-commit": "lint-staged"
-        }
     },
     "lint-staged": {
         "*.ts": [

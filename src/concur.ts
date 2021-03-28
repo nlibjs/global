@@ -4,7 +4,7 @@ import {AppError} from './AppError';
 export const concur = async <T, S>(
     params: {
         concurrency: number,
-        iterator: Iterator<T> | AsyncIterator<T>,
+        iterator: AsyncIterator<T> | Iterator<T>,
         processor: (item: T, index: number) => Promise<S> | S,
     },
 ): Promise<Array<S>> => await new Promise((resolve, reject) => {
