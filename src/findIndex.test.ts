@@ -1,5 +1,6 @@
 import ava from 'ava';
-import {CodeTester, findIndexOfCharCode, findIndexOfCodePoint} from './findIndex';
+import type {CodeTester} from './findIndex';
+import {findIndexOfCharCode, findIndexOfCodePoint} from './findIndex';
 
 ava('findIndexOfCharCode', (t) => {
     const test: CodeTester = (charCode) => charCode === 'c'.charCodeAt(0);

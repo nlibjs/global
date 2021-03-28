@@ -1,7 +1,7 @@
 import {Error} from './Error';
 import {defineReadOnlyProperties} from './defineReadOnlyProperties';
 
-export class AppError<TData = any> extends Error {
+export class AppError<TData = unknown> extends Error {
 
     public data?: TData;
 

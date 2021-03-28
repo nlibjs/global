@@ -1,5 +1,6 @@
 import ava from 'ava';
-import {serialize, Serializable} from './serialize';
+import type {Serializable} from './serialize';
+import {serialize} from './serialize';
 
 let index = 0;
 const test = (
@@ -37,6 +38,7 @@ test({
 test({
     title: 'Iterable<string>',
     serializable: {
+        // eslint-disable-next-line @nlib/no-globals
         [Symbol.iterator]: (): Iterator<string> => {
             let count = 0;
             return {

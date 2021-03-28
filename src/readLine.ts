@@ -1,4 +1,5 @@
-import {CodeTester, findIndexOfCharCode} from './findIndex';
+import type {CodeTester} from './findIndex';
+import {findIndexOfCharCode} from './findIndex';
 import {Object} from './global';
 
 const LF = 0x0A;

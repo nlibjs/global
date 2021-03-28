@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable no-shadow-restricted-names */
 /**
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
  */
+// eslint-disable-next-line @nlib/no-globals, no-undef
 const g = globalThis;
 export const {Object} = g;
 export const {Function} = g;
@@ -83,8 +86,8 @@ export const {setTimeout} = g;
 
 interface whatwgURL extends URL {
     new (
-        url: string | URL,
-        base?: string | URL,
+        url: URL | string,
+        base?: URL | string,
     ): URL,
 }
 const _URL = (g as unknown as {URL: unknown}).URL as whatwgURL;
@@ -92,7 +95,7 @@ export {_URL as URL};
 
 interface whatwgURLSearchParams extends URLSearchParams {
     new (
-        init: string | URLSearchParams | Iterable<[string, string]> | Record<string, string>,
+        init: Iterable<[string, string]> | Record<string, string> | URLSearchParams | string,
     ): URLSearchParams,
 }
 const _URLSearchParams = (g as unknown as {URLSearchParams: unknown}).URLSearchParams as whatwgURLSearchParams;
